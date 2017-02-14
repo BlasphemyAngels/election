@@ -1,9 +1,11 @@
 # !/usr/bin/python3
 # _*_coding: utf-8_*_
 """read data from source"""
-from utils import utils
 import os
+from election.utils import utils
 import pandas as pd
+
+
 def read_data():
     """
         read data from source
