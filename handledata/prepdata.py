@@ -2,10 +2,10 @@
 # _*_coding: utf-8_*_
 """read data from source"""
 import os
-from election.utils import utils
 import pandas as pd
-
-
+import sys
+sys.path.append('../')
+from utils import utils
 def read_data():
     """
         read data from source
