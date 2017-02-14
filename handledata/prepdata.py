@@ -4,12 +4,13 @@
 from utils import utils
 import os
 import pandas as pd
-import numpy as np
 def read_data():
     """
         read data from source
     @return: the data read from source
     """
+    print('start read data')
+    print('...')
     vpath = __file__
     relpath = os.path.abspath(__file__)
     dirpath = relpath[0:relpath.rfind(vpath)]
@@ -19,6 +20,8 @@ def read_data():
     data_df = pd.read_csv(dirpath + zfile.namelist()[0],\
             usecols=['enddate', 'rawpoll_clinton', 'rawpoll_trump',\
             'adjpoll_clinton', 'adjpoll_trump'])
+    print('data size: %d' % data_df.shape[0])
+    print('read data finish')
     return data_df
 def clean_data(data_df):
     """
@@ -26,21 +29,13 @@ def clean_data(data_df):
     @parm data_df: the source data needed to clean
     @return: the cleaned data
     """
-    #filter the nan data
+    print('start clean data')
+    print('...')
+    #filter the nan datka
     data_df = data_df.dropna()
+    #transform the datetime to %Y-%m-%d
+    data_df['enddate'] = pd.to_datetime(data_df['enddate'])
+    #transform the datetime to %Y-%m
+    data_df['enddate'] = data_df['enddate'].map(lambda t: t.strftime('%Y-%m'))
     print('clean data size: %d' % data_df.shape[0])
-    #get the date data
-    date_s = pd.to_datetime(data_df.pop('enddate')).dropna() 
-    #get the clinton origin data
-    rawpoll_clinton = data_df.pop('rawpoll_clinton').dropna()
-    #get the trump origin data
-    rawpoll_trump = data_df.pop('rawpoll_trump').dropna()
-    #get the clinton adjust data
-    adjpoll_clinton = data_df.pop('adjpoll_clinton').dropna()
-    #get the trump adjust data
-    adjpoll_trump = data_df.pop('adjpoll_trump').dropna()
-
-if __name__ == '__main__':
-    data_df = read_data()
-    print('data size: %d' % data_df.shape[0])
-    clean_data(data_df)
+    print('clean data finish')
