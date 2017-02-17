@@ -3,8 +3,6 @@
 """read data from source"""
 import os
 import pandas as pd
-import sys
-sys.path.append('../')
 from utils import utils
 def read_data():
     """
@@ -14,9 +12,9 @@ def read_data():
     print('start read data')
     print('...')
     vpath = __file__
-    relpath = os.path.abspath(__file__)
-    dirpath = relpath[0:relpath.rfind(vpath)]
-    dirpath = "{}data/".format(dirpath)
+    relpath = os.path.abspath(vpath)
+    dirpath = relpath[0:relpath.rfind('/')]
+    dirpath = os.path.join(dirpath, "data/")
     filename = os.listdir(dirpath)[0]
     zfile = utils.unzipfile(dirpath + filename, dirpath)
     data_df = pd.read_csv(dirpath + zfile.namelist()[0],\
@@ -41,3 +39,4 @@ def clean_data(data_df):
     data_df['enddate'] = data_df['enddate'].map(lambda t: t.strftime('%Y-%m'))
     print('clean data size: %d' % data_df.shape[0])
     print('clean data finish')
+    return data_df
