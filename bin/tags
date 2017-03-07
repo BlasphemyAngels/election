@@ -4,3 +4,12 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+clean_data	prepdata.py	/^def clean_data(data_df):$/;"	f
+data_df	analysisdata.py	/^    data_df = prepdata.clean_data(data_df)$/;"	v
+data_df	analysisdata.py	/^    data_df = prepdata.read_data()$/;"	v
+data_group	analysisdata.py	/^    data_group = data_df.groupby(['enddate'])$/;"	v
+data_group_sum_df	analysisdata.py	/^    data_group_sum_df = data_group.sum()$/;"	v
+read_data	prepdata.py	/^def read_data():$/;"	f
+unzipfile	utils/utils.py	/^def unzipfile(filename, storedir):$/;"	f
+width	analysisdata.py	/^    width = 0.25$/;"	v
+x	analysisdata.py	/^    x = np.arange(data_group_sum_df.shape[0])$/;"	v

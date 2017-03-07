@@ -1,4 +1,4 @@
-# !/usr/bin/python3
+#!/usr/bin/env python
 # _*_coding: utf-8_*_
 
 """Analysis the data and show it in a image"""
@@ -6,6 +6,7 @@
 import matplotlib.pyplot as plt
 import prepdata
 import numpy as np
+
 if __name__ == '__main__':
     data_df = prepdata.read_data()
     data_df = prepdata.clean_data(data_df)
